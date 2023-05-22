@@ -95,9 +95,9 @@
         input:focus, select:focus {
         border: 1px solid #ff6801; }
 
-        body {
-        position: relative;
-        }
+body {
+     position: relative;
+    }
 
         body::before {
         content: "";

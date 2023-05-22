@@ -44,7 +44,6 @@ class HomeController extends Controller
                     $country_list = DB::table('checks')
                         ->groupBy('pay')
                         ->get();
-            
                     $check = Check_info::all();
                     $checks = Check::all();
             
@@ -74,7 +73,7 @@ class HomeController extends Controller
             $check->order=$request->order;
             $check->payerpour=$request->payerpour;
             $check->chequebarre=$request->chequebarre;
-            
+            $check->user_id = Auth::user()->id;
 
             $check->save();
             return redirect()->back();
@@ -126,8 +125,9 @@ class HomeController extends Controller
 
     public function historique_page()
             {
-                $data=check_info::all();
-                return view('user.historique',compact('data'));
+                $user = Auth::user();
+                $data = Check_info::where('user_id', $user->id)->get();
+                 return view('user.historique',compact('data',));
             }
 
 
